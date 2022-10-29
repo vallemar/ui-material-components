@@ -32,44 +32,55 @@ function serializeModalOptions(options) {
     );
 }
 
+const useSheet = () =>{
+    const show = (component, options) => showSheet(component, options);
+    const close = (...args) => closeSheet(args);
+
+    return {
+        show,
+        close
+    }
+}
+
+const showSheet = (component, options: VueBottomSheetOptions) =>{
+    return new Promise((resolve) => {
+        let resolved = false;
+
+        let navEntryInstance = createNativeView(component, {
+            props: options.props,
+            key: serializeModalOptions(options)
+        })
+
+        Frame.topmost().showBottomSheet(Object.assign({}, options, {
+            view: navEntryInstance,
+            closeCallback: (...args) => {
+                if (resolved) {
+                    return;
+                }
+                resolved = true;
+                if (navEntryInstance && navEntryInstance) {
+                    options.closeCallback && options.closeCallback.apply(undefined, args);
+                    resolve(...args);
+                    //TODO: add emit
+                    /*          navEntryInstance.$emit('bottomsheet:close');
+                              navEntryInstance.$destroy();*/
+                    navEntryInstance = null;
+                }
+            }
+        }));
+    });
+}
+const closeSheet = (...args) => {
+    //TODO: implement
+    this.nativeView.closeBottomSheet.apply(this.nativeView, args);
+}
+
 const BottomSheetPlugin = {
-    install(Vue) {
-        Vue.prototype.$showBottomSheet = function (component, options: VueBottomSheetOptions) {
-            return new Promise((resolve: (...args) => void) => {
-                let resolved = false;
-                let navEntryInstance = new Vue({
-                    name: 'BottomSheetEntry',
-                    parent: this.$root,
-                    render: (h) =>
-                        h(component, {
-                            props: options.props,
-                            key: serializeModalOptions(options)
-                        })
-                });
-                navEntryInstance.$mount();
-                this.nativeView.showBottomSheet(
-                    Object.assign({}, options, {
-                        view: navEntryInstance.nativeView,
-                        closeCallback: (...args) => {
-                            if (resolved) {
-                                return;
-                            }
-                            resolved = true;
-                            if (navEntryInstance && navEntryInstance.nativeView) {
-                                options.closeCallback && options.closeCallback.apply(undefined, args);
-                                resolve(...args);
-                                navEntryInstance.$emit('bottomsheet:close');
-                                navEntryInstance.$destroy();
-                                navEntryInstance = null;
-                            }
-                        }
-                    })
-                );
-            });
-        };
-        Vue.prototype.$closeBottomSheet = function (...args) {
-            this.nativeView.closeBottomSheet.apply(this.nativeView, args);
-        };
+    install(app) {
+        const globals = app.config.globalProperties;
+
+        globals.$showBottomSheet = showSheet;
+        globals.$closeBottomSheet = closeSheet;
     }
 };
 
