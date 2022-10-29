@@ -32,7 +32,7 @@ function serializeModalOptions(options) {
     );
 }
 
-const useSheet = () =>{
+const useBottomSheet = () =>{
     const show = (component, options) => showSheet(component, options);
     const close = (...args) => closeSheet(args);
 
@@ -84,4 +84,4 @@ const BottomSheetPlugin = {
     }
 };
 
-export default BottomSheetPlugin;
+export { BottomSheetPlugin, useBottomSheet };
