@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-material-button",
-    "version": "7.0.29",
+    "version": "7.0.32",
     "description": "Material Design Buttons allow users to take actions, and make choices, with a single tap.",
     "main": "./button",
     "sideEffects": false,
@@ -9,11 +9,12 @@
         "tsc": "../../node_modules/.bin/cpy ../../src/button/button.d.ts ./ && ../../node_modules/.bin/tsc -d",
         "tsc-win": "..\\..\\node_modules\\.bin\\cpy ..\\..\\src\\button\\button.d.ts .\\ && ..\\..\\node_modules\\.bin\\tsc -d",
         "build": "npm run tsc",
+        "setup.yarn": "yarn install",
         "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win",
         "build.all": "npm run build && npm run build.angular",
         "build.all.win": "npm run build.win && npm run build.angular.win",
-        "build.angular": "../../node_modules/.bin/ng-packagr -p ../../src/button/angular/package.json -c ../../src/button/angular/tsconfig.json",
+        "build.angular": "ng-packagr -p ../../src/button/angular/ng-package.json -c ../../src/button/angular/tsconfig.json",
         "build.angular.win": "..\\..\\node_modules\\.bin\\ng-packagr -p ..\\..\\src\\button\\angular\\package.json -c ..\\..\\src\\button\\angular\\tsconfig.json",
         "clean": "../../node_modules/.bin/rimraf ./*.d.ts ./*.js ./*.js.map"
     },
@@ -47,7 +48,7 @@
     "readmeFilename": "README.md",
     "dependencies": {
         "@nativescript-community/text": "^1.5.2",
-        "@nativescript-community/ui-material-core": "^7.0.29"
+        "@nativescript-community/ui-material-core": "^7.0.32"
     },
     "gitHead": "240457b7952c4f0258aabc46615de63d1473ead1"
 }

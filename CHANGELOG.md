@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.32](https://github.com/nativescript-community/ui-material-component/compare/v7.0.31...v7.0.32) (2022-12-09)
+
+
+### Bug Fixes
+
+* **tabs:** active tabitem isn't visible ([fc286a5](https://github.com/nativescript-community/ui-material-component/commit/fc286a55a67b08403aff027fa49d66f6a7022200))
+
+
+
+
+
+## [7.0.31](https://github.com/nativescript-community/ui-material-component/compare/v7.0.30...v7.0.31) (2022-12-01)
+
+**Note:** Version bump only for package @nativescript-community/ui-material-components
+
+
+
+
+
+## [7.0.30](https://github.com/nativescript-community/ui-material-component/compare/v7.0.29...v7.0.30) (2022-11-18)
+
+
+### Bug Fixes
+
+* **dialogs:** iOS ensure we dont show a dialog from another one ([e68a13b](https://github.com/nativescript-community/ui-material-component/commit/e68a13b45047b3542f64240b537d1b400d610f35))
+
+
+
+
+
 ## [7.0.29](https://github.com/nativescript-community/ui-material-component/compare/v7.0.28...v7.0.29) (2022-10-24)
 
 
