@@ -33,12 +33,11 @@ export class TextField extends NTextField {
     buttonColor: Color;
     digits: string;
     verticalTextAlignment: VerticalTextAlignment;
-
     focus();
     blur();
     requestFocus();
     clearFocus();
-    setSelection(start: number, stop?: number);
+    setStartIcon: (imageSource: ImageSource, onTap?: (nativeView) => void) => void;
 }
 
 export function initTextInputEditText(); // android only

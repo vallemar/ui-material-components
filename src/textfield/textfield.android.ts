@@ -35,7 +35,8 @@ import {
     paddingTopProperty,
     placeholderColorProperty,
     profile,
-    textAlignmentProperty
+    textAlignmentProperty,
+    ImageSource
 } from '@nativescript/core';
 import { secureProperty } from '@nativescript/core/ui/text-field';
 import { TextFieldBase } from './textfield.common';
@@ -186,6 +187,22 @@ export class TextField extends TextFieldBase {
             this.editText.setSelection(start, stop);
         } else {
             this.editText.setSelection(start);
+        }
+    }
+
+    public setStartIcon(imageSource: ImageSource, onTap?: (nativeView) => void) {
+        if (imageSource && imageSource.android) {
+            const drawable = new android.graphics.drawable.BitmapDrawable(Utils.android.getApplicationContext().getResources(), imageSource.android);
+            this.layoutView.setStartIconDrawable(drawable);
+            this.layoutView.setStartIconTintList(null);
+            this.layoutView.setStartIconOnClickListener(new android.view.View.OnClickListener({
+              onClick(view: android.view.View) {
+                onClick(view);
+              }
+            }))
+        } else {
+            this.layoutView.setStartIconDrawable(null);
+            this.layoutView.setStartIconOnClickListener(null);
         }
     }
 

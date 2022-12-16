@@ -1,4 +1,4 @@
-import { CSSType, Color, TextField as NTextField } from '@nativescript/core';
+import { CSSType, Color, TextField as NTextField, ImageSource } from '@nativescript/core';
 import { cssProperty } from '@nativescript-community/ui-material-core';
 import { VerticalTextAlignment } from '@nativescript-community/text';
 
@@ -6,6 +6,7 @@ import { VerticalTextAlignment } from '@nativescript-community/text';
 export abstract class TextFieldBase extends NTextField {
     abstract requestFocus();
     abstract clearFocus();
+    abstract setStartIcon: (imageSource: ImageSource, onTap?: (nativeView) => void) => void;
 
     // those 2 are not released yet
     secureWithoutAutofill: boolean;

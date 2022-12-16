@@ -34,7 +34,8 @@ import {
     paddingLeftProperty,
     paddingRightProperty,
     paddingTopProperty,
-    placeholderColorProperty
+    placeholderColorProperty,
+    ImageSource
 } from '@nativescript/core';
 import { textProperty } from '@nativescript/core/ui/text-base';
 import { TextFieldBase } from './textfield.common';
@@ -273,6 +274,18 @@ export class TextField extends TextFieldBase {
             const begin = view.beginningOfDocument;
             const pos = view.positionFromPositionOffset(begin, start);
             view.selectedTextRange = view.textRangeFromPositionToPosition(pos, pos);
+        }
+    }
+
+    public setStartIcon(imageSource: ImageSource, onTap?: (nativeView) => void) {
+        const view = this.nativeTextViewProtected;
+        if (imageSource && imageSource.ios) {
+            let icon = UIImageView.alloc().initWithImage(imageSource.ios);
+            view.leadingView = icon;
+            view.leadingViewMode = UITextFieldViewMode.Always;
+        } else {
+            view.leadingView = null;
+            view.leadingViewMode = UITextFieldViewMode.Never;
         }
     }
 
